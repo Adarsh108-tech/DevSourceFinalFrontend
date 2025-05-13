@@ -76,13 +76,13 @@ export default function Home() {
     <div className="bg-slate-800 w-[100vw] overflow-hidden">
       <Nav />
       <div className="mt-22 relative my-10 bg-gradient-to-r rounded-lg z-5 flex md:flex-row flex-col-reverse justify-center items-center w-full h-[100vh] md:h-[100vh]  p-3 ">
-        <div className="-z-5 absolute h-full w-full overflow-hidden">
-          <img className="h-fit w-fit object-cover " src="/Golden_Back.svg"></img>
+        <div className="absolute inset-0 -z-9 overflow-hidden pointer-events-none">
+          <img className="h-fit w-fit" src="/back.jpg"></img>
         </div>
         
         <div className="md:w-[50%] text-2xl flex flex-col justify-center">
           <motion.h1
-            className="text-8xl font-bold tracking-wider text-center text-transparent inline-block bg-clip-text"
+            className="text-8xl z-10 font-bold tracking-wider text-center text-transparent inline-block bg-clip-text"
             animate={{ backgroundPosition: ["0% 0%", "0% 100%", "0% 0%"] }}
             transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
             style={{
@@ -92,7 +92,7 @@ export default function Home() {
           >
             DevSource
           </motion.h1>
-          <p className="text-center">
+          <p className="text-center z-10">
             The Most Unique and diverse Club in USICT ACM
           </p>
 
