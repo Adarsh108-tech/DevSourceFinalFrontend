@@ -26,7 +26,7 @@ function Nav() {
                 <div className="hidden md:flex gap-8 TrialCondensedBold tracking-widest">
                     {["Home", "Members", "Groups", "Projects", "Blog", "Profile"].map((item) => (
                         <Link 
-                            href={item === "Home" ? "/" : "/pages/" + item.toLowerCase()} 
+                            href={item === "Home" ? "/" : "/protected/pages/" + item.toLowerCase()} 
                             key={item}
                             className="text-lg uppercase relative text-gray-300 
                                 before:content-[attr(data-text)] before:absolute before:text-red-500 

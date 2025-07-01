@@ -3,6 +3,7 @@
 import MemberList from "@/components/members";
 import Nav from "@/components/navbar";
 import { useState } from "react";
+import { useEffect } from "react";
 
 function Members() {
     const [title, setTitle] = useState("");
@@ -42,9 +43,27 @@ function Members() {
         "Aadi Jain"
     ]
     ]
+
+    const [loading , setLoading] = useState(true);
+
+    useEffect(() => {
+        const handleLoad = () => {
+            setTimeout(() => setLoading(false), 500); // short delay for smoother UX
+        };
+
+        if (document.readyState === "complete") {
+            handleLoad();
+        } else {
+            window.addEventListener("load", handleLoad);
+            return () => window.removeEventListener("load", handleLoad);
+        }
+    }, []);
+
     return ( 
         <div>
+
             <Nav />
+
             <div className="w-full">
                 <div className="flex gap-10 mt-20 text-sm md:text-lg w-full bg-slate-500 p-2 justify-evenly rounded-b-lg">
                     <button className="bg-green-800 hover:border-green-400 border-2 border-gray-500 hover:bg-green-500 duration-300 hover:scale-125 md:text-xl text-white p-2 rounded-lg" onClick={() => setWeb()}>

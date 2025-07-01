@@ -7,6 +7,13 @@ export default {
   ],
   theme: {
     extend: {
+      colors: {
+        darkRed: '#8B0000',
+        blood: '#3B0000',
+      },
+      fontFamily: {
+        futuristic: ["Orbitron", "sans-serif"],
+      },
       animation: {
         "scroll-watcher": "scroll-watcher linear",
       },
