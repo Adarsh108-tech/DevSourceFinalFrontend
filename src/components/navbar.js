@@ -45,7 +45,7 @@ function Nav() {
                 <div className="md:hidden flex flex-col items-center gap-4 pb-4 bg-slate-900">
                     {["Home", "Members", "Groups", "Projects", "Blog", "Profile"].map((item) => (
                         <Link 
-                            href={item === "Home" ? "/" : "/pages/" + item.toLowerCase()} 
+                            href={item === "Home" ? "/" : "/protected/pages/" + item.toLowerCase()} 
                             key={item}
                             className="text-lg text-gray-300 hover:text-red-500"
                             onClick={() => setIsOpen(false)}
