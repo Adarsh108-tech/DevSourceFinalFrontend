@@ -89,8 +89,8 @@ export default function Home() {
 
       <About />
 
-      <div className="w-full h-full">
-        <h1 className="p-5 text-2xl">Tech Stack</h1>
+      <div className="w-full h-full mt-10">
+        <h1 className="p-5 text-5xl text-center">Tech Stack</h1>
         <div className="md:flex xs:flex-col md:flex-row flex-wrap md:gap-10 p-10 justify-center">
           {TechStack.map((data, index) => (
             <motion.div

@@ -15,6 +15,9 @@ const geistMono = Geist_Mono({
 export const metadata = {
   title: "DevSource",
   description: "created by Adarsh Tiwari",
+  icons: {
+    icon: "/fav.ico",
+  },
 };
 
 export default function RootLayout({ children }) {
