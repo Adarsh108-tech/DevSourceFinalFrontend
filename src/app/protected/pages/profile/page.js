@@ -19,7 +19,7 @@ function ProfilePage() {
       const parsedId = JSON.parse(atob(token.split(".")[1])).id;
       setUserId(parsedId);
 
-      const userRes = await fetch(`http://devsourcebackend.onrender.com/user/${parsedId}`, {
+      const userRes = await fetch(`https://devsourcebackend.onrender.com/user/${parsedId}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       const user = await userRes.json();
@@ -28,7 +28,7 @@ function ProfilePage() {
       setBio(user.description || "");
       setLocation(user.address || "");
 
-      const blogsRes = await fetch(`http://devsourcebackend.onrender.com/user/${parsedId}/blogs`, {
+      const blogsRes = await fetch(`https://devsourcebackend.onrender.com/user/${parsedId}/blogs`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       const blogs = await blogsRes.json();
@@ -52,7 +52,7 @@ function ProfilePage() {
     try {
       const token = localStorage.getItem("token");
       console.log(token);
-      const res = await fetch("http://devsourcebackend.onrender.com/upload/profile-picture", {
+      const res = await fetch("https://devsourcebackend.onrender.com/upload/profile-picture", {
         method: "POST",
         headers: {
           Authorization: `Bearer ${token}`,
@@ -75,7 +75,7 @@ function ProfilePage() {
   const handleDeleteBlog = async (id) => {
     try {
       const token = localStorage.getItem("token");
-      await fetch(`http://devsourcebackend.onrender.com/deleteBlog/${id}`, {
+      await fetch(`https://devsourcebackend.onrender.com/deleteBlog/${id}`, {
         method: "DELETE",
         headers: { Authorization: `Bearer ${token}` },
       });
@@ -88,7 +88,7 @@ function ProfilePage() {
   const handleSaveProfile = async () => {
     try {
       const token = localStorage.getItem("token");
-      const res = await fetch("http://devsourcebackend.onrender.com/user/profile-info", {
+      const res = await fetch("https://devsourcebackend.onrender.com/user/profile-info", {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",

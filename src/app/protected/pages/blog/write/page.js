@@ -30,7 +30,7 @@ export default function BlogEditor() {
     }
 
     try {
-      const res = await fetch("http://devsourcebackend.onrender.com/addBlog", {
+      const res = await fetch("https://devsourcebackend.onrender.com/addBlog", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

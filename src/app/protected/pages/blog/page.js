@@ -17,7 +17,7 @@ function Blogs() {
   const fetchAllBlogs = async () => {
     try {
       const token = localStorage.getItem("token");
-      const res = await fetch("http://devsourcebackend.onrender.com/getAllBlogs", {
+      const res = await fetch("https://devsourcebackend.onrender.com/getAllBlogs", {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -41,7 +41,7 @@ function Blogs() {
     try {
       const token = localStorage.getItem("token");
       const res = await fetch(
-        `http://devsourcebackend.onrender.com/searchBlogs?q=${encodeURIComponent(searchTerm)}`,
+        `https://devsourcebackend.onrender.com/searchBlogs?q=${encodeURIComponent(searchTerm)}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
