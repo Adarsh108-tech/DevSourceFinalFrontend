@@ -1,5 +1,4 @@
 "use client";
-
 import LogoutButton from "@/components/logout";
 import Nav from "@/components/navbar";
 import { useEffect, useState } from "react";
@@ -20,17 +19,16 @@ function ProfilePage() {
       const parsedId = JSON.parse(atob(token.split(".")[1])).id;
       setUserId(parsedId);
 
-      const userRes = await fetch(`http://localhost:5000/user/${parsedId}`, {
+      const userRes = await fetch(`http://devsourcebackend.onrender.com/user/${parsedId}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       const user = await userRes.json();
-
       setName(user.name);
       setImage(user.profilePicture || "/default-profile.png");
       setBio(user.description || "");
       setLocation(user.address || "");
 
-      const blogsRes = await fetch(`http://localhost:5000/user/${parsedId}/blogs`, {
+      const blogsRes = await fetch(`http://devsourcebackend.onrender.com/user/${parsedId}/blogs`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       const blogs = await blogsRes.json();
@@ -44,34 +42,40 @@ function ProfilePage() {
     fetchUserData();
   }, []);
 
-  const handleProfileImageChange = async () => {
-    const url = prompt("Enter image URL:");
-    if (!url) return;
-
+  const handleProfileImageChange = async (e) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+  
+    const formData = new FormData();
+    formData.append("profilePicture", file);
+  
     try {
       const token = localStorage.getItem("token");
-      const res = await fetch("http://localhost:5000/user/profile-picture", {
-        method: "PUT",
+      console.log(token);
+      const res = await fetch("http://devsourcebackend.onrender.com/upload/profile-picture", {
+        method: "POST",
         headers: {
-          "Content-Type": "application/json",
           Authorization: `Bearer ${token}`,
         },
-        body: JSON.stringify({ profilePicture: url }),
+        body: formData,
       });
-
-      if (!res.ok) throw new Error("Failed to update profile picture");
-
-      const data = await res.json();
-      setImage(data.user.profilePicture);
+  
+      const result = await res.json(); // ✅ parse only ONCE
+  
+      if (!res.ok) throw new Error(result.message || "Failed to upload image");
+  
+      console.log(result); // Optional debug
+      setImage(result.user.profilePicture); // ✅ Update profile image
     } catch (err) {
-      console.error(err);
+      console.error("Image upload failed", err);
     }
   };
+  
 
   const handleDeleteBlog = async (id) => {
     try {
       const token = localStorage.getItem("token");
-      await fetch(`http://localhost:5000/deleteBlog/${id}`, {
+      await fetch(`http://devsourcebackend.onrender.com/deleteBlog/${id}`, {
         method: "DELETE",
         headers: { Authorization: `Bearer ${token}` },
       });
@@ -84,7 +88,7 @@ function ProfilePage() {
   const handleSaveProfile = async () => {
     try {
       const token = localStorage.getItem("token");
-      const res = await fetch("http://localhost:5000/user/profile-info", {
+      const res = await fetch("http://devsourcebackend.onrender.com/user/profile-info", {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -116,9 +120,14 @@ function ProfilePage() {
             />
             <label
               className="absolute bottom-2 right-2 bg-blue-500 text-white p-2 rounded-full cursor-pointer hover:bg-blue-600"
-              onClick={handleProfileImageChange}
             >
               <FaCamera size={16} />
+              <input
+                type="file"
+                accept="image/*"
+                onChange={handleProfileImageChange}
+                className="hidden"
+              />
             </label>
           </div>
           {isEditing ? (
@@ -126,7 +135,6 @@ function ProfilePage() {
               <input
                 type="text"
                 value={name}
-                onChange={(e) => setName(e.target.value)}
                 className="w-full px-4 py-2 border rounded-md text-black"
                 disabled
               />
@@ -182,7 +190,7 @@ function ProfilePage() {
               </div>
             ))
           ) : (
-            <p className="text-gray-500">No blogs found.</p>
+            <p className="text-gray-500 text-center">No blogs found.</p>
           )}
         </div>
       </div>

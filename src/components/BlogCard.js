@@ -10,7 +10,7 @@ function BlogCard({ blog }) {
   const handleLike = async () => {
     const token = localStorage.getItem("token");
     try {
-      const res = await fetch(`http://localhost:5000/blog/like/${blog._id}`, {
+      const res = await fetch(`http://devsourcebackend.onrender.com/blog/like/${blog._id}`, {
         method: "POST",
         headers: { Authorization: `Bearer ${token}` },
       });
@@ -27,7 +27,7 @@ function BlogCard({ blog }) {
   const handleDislike = async () => {
     const token = localStorage.getItem("token");
     try {
-      const res = await fetch(`http://localhost:5000/blog/dislike/${blog._id}`, {
+      const res = await fetch(`http://devsourcebackend.onrender.com/blog/dislike/${blog._id}`, {
         method: "POST",
         headers: { Authorization: `Bearer ${token}` },
       });

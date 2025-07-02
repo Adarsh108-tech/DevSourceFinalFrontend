@@ -1,16 +1,19 @@
 "use client";
 import { useState } from "react";
 import { toast } from "react-toastify";
+import { useRouter } from "next/navigation";
 
 export default function AuthForm({ type }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [name, setName] = useState(""); // only for signup
 
+  const router = useRouter();
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const endpoint = type === "login" ? "http://localhost:5000/login" : "http://localhost:5000/register";
+    const endpoint = type === "login" ? "http://devsourcebackend.onrender.com/login/user" : "http://devsourcebackend.onrender.com/register/user";
     const payload = type === "login"
       ? { email, password }
       : { name, email, password };
@@ -32,12 +35,15 @@ export default function AuthForm({ type }) {
       if (type === "login") {
         localStorage.setItem("token", data.token);
         toast.success("Logged in successfully!");
+        router.push("/protected/pages/home")
         // optionally redirect
       } else {
         toast.success("Registered successfully!");
+        router.push("/login")
         // optionally redirect
       }
     } catch (err) {
+      console.log(err);
       toast.error("Network error or server is down.");
     }
   };

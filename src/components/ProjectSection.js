@@ -13,7 +13,7 @@ function ProjectSection() {
   useEffect(() => {
     const fetchProjects = async () => {
       try {
-        const res = await fetch("http://localhost:5000/getAllProjects", {
+        const res = await fetch("http://devsourcebackend.onrender.com/getAllProjects", {
           headers: {
             Authorization: `Bearer ${token}`,
           },
