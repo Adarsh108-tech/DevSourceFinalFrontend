@@ -13,7 +13,7 @@ function ProjectSection() {
   useEffect(() => {
     const fetchProjects = async () => {
       try {
-        const res = await fetch("https://devsourcebackend.onrender.com/getAllProjects", {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE}/getAllProjects`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },

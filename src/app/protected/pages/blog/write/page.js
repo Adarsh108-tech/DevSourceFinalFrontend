@@ -30,7 +30,7 @@ export default function BlogEditor() {
     }
 
     try {
-      const res = await fetch("https://devsourcebackend.onrender.com/addBlog", {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE}/addBlog`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

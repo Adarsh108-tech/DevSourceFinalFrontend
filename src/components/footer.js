@@ -1,6 +1,6 @@
 function Footer() {
     return ( 
-        <div className="flex  md:flex-row py-10 px-10 md:px-20 w-full justify-between pb-36 items-center md:text-center md:text-left">
+        <div className="flex  md:flex-row py-10 px-10 md:px-20 w-full justify-between pb-36 items-center md:text-center">
             <div className="md:text-4xl text-2xl mb-6 md:mb-0">
                 <p className=" text-sky-500 text-center text-sm">USIC&T ACM STUDENT CHAPTER</p>
                 <p>DevSource Club </p>

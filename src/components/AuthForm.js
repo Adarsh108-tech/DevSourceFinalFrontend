@@ -13,7 +13,7 @@ export default function AuthForm({ type }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const endpoint = type === "login" ? "https://devsourcebackend.onrender.com/login/user" : "https://devsourcebackend.onrender.com/register/user";
+    const endpoint = type === "login" ? `${process.env.NEXT_PUBLIC_API_BASE}/login/user` : `${process.env.NEXT_PUBLIC_API_BASE}/register/user`;
     const payload = type === "login"
       ? { email, password }
       : { name, email, password };
