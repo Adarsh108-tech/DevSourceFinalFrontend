@@ -13,7 +13,7 @@ export default function Home() {
   const elementRef = useRef(null);
   const [Leftoffset, SetLeftOffset] = useState(0);
   const [loading, setLoading] = useState(true);
-
+  console.log(process.env.NEXT_PUBLIC_API_BASE);
   const TechStack = [
     { name: "React js", link: "https://pluspng.com/img-png/react-logo-png-img-react-logo-png-react-js-logo-png-transparent-png-1142x1027.png" },
     { name: "Mongo DB", link: "/TechStackLogos/mongodb.png" },
